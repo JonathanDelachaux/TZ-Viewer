@@ -1,0 +1,14 @@
+INSTALLATION AUTOMATIQUE — TZ VIEWER 2.0
+
+1. Dézippe entièrement ce dossier.
+2. Double-clique sur INSTALLER-TZ-VIEWER-2.0.bat.
+3. Une fenêtre noire confirme l'installation.
+4. Retourne dans GitHub Desktop.
+5. Tu dois voir plusieurs fichiers modifiés et les dossiers engine et data.
+6. Écris : Installation TZ Viewer 2.0
+7. Commit to main.
+8. Push origin.
+9. Recharge le site avec Ctrl + F5.
+
+Le programme copie uniquement le code.
+Il ne supprime ni ne remplace ton dossier media.
