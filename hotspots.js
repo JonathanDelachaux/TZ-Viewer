@@ -1,56 +1,74 @@
 /*
-  TZ Viewer — zones cliquables corrigées
-  01 à 06 inchangés.
-  07 = Dans la piscine
-  08 = Bassin de la Boussole (deux peintures superposées, une seule animation)
-  09 = Place des Mascarades
-  10 = La Forêt
+  TZ Viewer — hotspots recalés sur l'image 00-galerie.png actuelle
+  Dimensions réelles de l'image : 2048 × 1024
+
+  Correspondances :
+  01 Atelier de Malkos
+  02 Argyrisme vs Vitiligo
+  03 Mardi Gras
+  04 Autour de Malkos
+  05 Fresque de Malkos
+  06 Au-dessus de la piscine
+  07 Dans la piscine
+  08 Bassin de la Boussole — deux peintures, une seule animation
+  09 Place des Mascarades
+  10 La Forêt
 */
 
-const IMAGE_WIDTH = 1365;
-const IMAGE_HEIGHT = 683;
+const IMAGE_WIDTH = 2048;
+const IMAGE_HEIGHT = 1024;
 
 const POLYGONS = [
+  // 01
   { scene: 0, polygons: [
-    [[544,277],[621,260],[706,266],[748,299],[751,385],[694,423],[619,433],[548,395]]
+    [[705,363],[929,358],[937,494],[708,505]]
   ]},
+
+  // 02
   { scene: 1, polygons: [
-    [[749,282],[802,286],[823,315],[827,387],[791,417],[751,389]]
+    [[952,407],[1000,403],[1002,440],[953,444]]
   ]},
+
+  // 03
   { scene: 2, polygons: [
-    [[824,304],[860,267],[894,291],[921,320],[921,383],[884,420],[835,424],[822,389]]
+    [[1052,404],[1118,398],[1122,445],[1049,447]]
   ]},
+
+  // 04
   { scene: 3, polygons: [
-    [[965,263],[1063,245],[1179,262],[1220,300],[1228,386],[1185,425],[1039,430],[958,399]]
+    [[1256,331],[1528,348],[1530,507],[1260,500]]
   ]},
+
+  // 05 — zone de droite
   { scene: 4, polygons: [
-    [[1238,278],[1365,266],[1365,454],[1289,443],[1242,393]],
-    [[0,269],[78,276],[87,426],[40,458],[0,455]]
+    [[1593,354],[2048,327],[2048,527],[1596,513]]
   ]},
+
+  // 06 — Au-dessus de la piscine
   { scene: 5, polygons: [
-    [[70,278],[105,282],[110,354],[99,384],[82,406],[67,375]]
+    [[145,401],[194,397],[195,466],[145,470]]
   ]},
 
   // 07 — Dans la piscine
   { scene: 6, polygons: [
-    [[101,272],[145,276],[143,365],[126,409],[102,397],[91,340]]
+    [[270,365],[500,355],[503,494],[268,494]]
   ]},
 
   // 08 — Bassin de la Boussole
   // Les deux peintures superposées ouvrent la même animation.
   { scene: 7, polygons: [
-    [[144,264],[258,254],[368,260],[379,350],[364,421],[306,446],[178,440],[136,386]],
-    [[155,286],[261,278],[359,282],[365,346],[347,401],[297,424],[188,418],[149,374]]
+    [[551,398],[606,392],[608,449],[551,450]],
+    [[620,400],[657,399],[658,446],[619,446]]
   ]},
 
   // 09 — Place des Mascarades
   { scene: 8, polygons: [
-    [[388,245],[432,239],[469,258],[478,350],[470,404],[443,431],[404,409],[387,351]]
+    [[0,357],[99,355],[100,510],[0,514]]
   ]},
 
   // 10 — La Forêt
   { scene: 9, polygons: [
-    [[475,260],[518,260],[535,294],[536,371],[518,408],[490,421],[473,382]]
+    [[204,405],[306,401],[307,439],[204,440]]
   ]}
 ];
 
@@ -74,50 +92,43 @@ function pointInPolygon(x, y, polygon) {
 function sceneAtPixel(x, y) {
   for (const hotspot of POLYGONS) {
     for (const polygon of hotspot.polygons) {
-      if (pointInPolygon(x, y, polygon)) return hotspot.scene;
+      if (pointInPolygon(x, y, polygon)) {
+        return hotspot.scene;
+      }
     }
   }
+
   return null;
 }
 
 export class HotspotStore {
   constructor(sceneCount) {
     this.sceneCount = sceneCount;
-    this.storageKey = "tz-viewer-hotspots-v2";
-    this.points = this.load();
+    this.storageKey = "tz-viewer-hotspots-v3";
+    this.points = [];
   }
 
   load() {
-    try {
-      const value = JSON.parse(localStorage.getItem(this.storageKey) || "[]");
-      return Array.isArray(value)
-        ? value.filter(point =>
-            Number.isInteger(point.scene) &&
-            Number.isFinite(point.u) &&
-            Number.isFinite(point.v)
-          ).slice(0, this.sceneCount)
-        : [];
-    } catch {
-      return [];
-    }
+    return [];
   }
 
-  save() {
-    localStorage.setItem(this.storageKey, JSON.stringify(this.points));
-  }
+  save() {}
 
   clear() {
     this.points = [];
-    localStorage.removeItem(this.storageKey);
+    localStorage.removeItem("tz-viewer-hotspots-v2");
+    localStorage.removeItem("tz-viewer-hotspots-v3");
   }
 
   add(uv) {
     if (this.points.length >= this.sceneCount) return false;
+
     this.points.push({
       scene: this.points.length,
       u: uv.u,
       v: uv.v
     });
+
     return true;
   }
 
@@ -128,8 +139,6 @@ export class HotspotStore {
   nearest(uv) {
     if (!uv) return null;
 
-    // Orientation correspondant à l’image panoramique actuellement utilisée.
-    // On ne teste plus les versions miroir, qui provoquaient les décalages.
     const x = uv.u * IMAGE_WIDTH;
     const y = (1 - uv.v) * IMAGE_HEIGHT;
 
