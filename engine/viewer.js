@@ -9,6 +9,12 @@ export class Viewer360 {
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.container.appendChild(this.renderer.domElement);
 
+    // Important sur smartphone : le navigateur ne doit pas transformer
+    // le toucher sur le panorama en défilement de page ou en zoom système.
+    this.renderer.domElement.style.touchAction = "none";
+    this.renderer.domElement.style.userSelect = "none";
+    this.renderer.domElement.style.webkitUserSelect = "none";
+
     this.scene = new THREE.Scene();
     this.rig = new THREE.Object3D();
     this.camera = new THREE.PerspectiveCamera(
@@ -89,6 +95,10 @@ export class Viewer360 {
 
   screenToUV(clientX, clientY) {
     if (!this.sphere) return null;
+
+    // Garantit des coordonnées correctes après une rotation ou le gyroscope.
+    this.scene.updateMatrixWorld(true);
+    this.camera.updateMatrixWorld(true);
 
     const rect = this.renderer.domElement.getBoundingClientRect();
     this.pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
@@ -175,20 +185,23 @@ export class Viewer360 {
     });
 
     canvas.addEventListener("pointerup", event => {
-      const wasClick =
-        !this.pointerMoved &&
-        Math.hypot(
-          event.clientX - this.pointerStartX,
-          event.clientY - this.pointerStartY
-        ) <= 8;
+      const tolerance = event.pointerType === "touch" ? 18 : 8;
+      const distance = Math.hypot(
+        event.clientX - this.pointerStartX,
+        event.clientY - this.pointerStartY
+      );
+
+      const wasClick = distance <= tolerance;
 
       this.dragging = false;
+      this.pointerMoved = false;
 
       try {
         canvas.releasePointerCapture(event.pointerId);
       } catch {}
 
       if (wasClick && this.clickCallback) {
+        event.preventDefault();
         this.clickCallback(event.clientX, event.clientY);
       }
     });
