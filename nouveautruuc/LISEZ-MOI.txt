@@ -1,0 +1,18 @@
+TZ VIEWER — ZONES POLYGONALES
+
+Remplace uniquement app.js dans le dépôt local TZ-Viewer.
+
+Cette version :
+- remplace les anciennes coordonnées approximatives ;
+- utilise les formes colorées dessinées sur l’image annotée ;
+- rend les tableaux cliquables ;
+- rend aussi les numéros au sol cliquables ;
+- sépare 06 et 07 en deux zones ;
+- gère la zone 05 qui traverse la couture du panorama.
+
+Après remplacement :
+1. Ouvre GitHub Desktop.
+2. Commit to main.
+3. Push origin.
+4. Attends environ une minute.
+5. Recharge le site avec Ctrl + F5.
