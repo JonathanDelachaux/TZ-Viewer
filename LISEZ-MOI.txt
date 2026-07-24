@@ -1,21 +1,24 @@
-CORRECTION DES LIENS DE LA GALERIE
+TZ VIEWER 2.0
 
-Remplace uniquement app.js dans le nouveau projet TZ-Viewer.
+Cette version est un projet complet et indépendant.
 
-Correspondances :
-1 = L’Atelier de Malkos
-2 = Argyrisme vs Vitiligo
-3 = Mardi Gras, le tardigrade
-4 = Autour de Malkos
-5 = Fresque de Malkos
-6 = Au-dessus de la piscine
-7 = Dans la piscine
-8 = Le Bassin de la Boussole
-9 = Place des Mascarades
-10 = La Forêt
+INSTALLATION
+1. Dézippe ce dossier.
+2. Copie tes dix médias dans le dossier media.
+3. Copie ensuite tout le contenu dans E:\GitHub\TZ-Viewer.
+4. Dans GitHub Desktop : Commit to main, puis Push origin.
+5. Recharge le site avec Ctrl + F5.
 
-Les clics sont maintenant limités à la zone des numéros au sol.
+MODE ÉDITEUR
+1. Ouvre la Galerie.
+2. Appuie sur F2.
+3. Clique au centre des zones 01 à 10, dans cet ordre.
+4. Clique sur Enregistrer.
+5. Les liens fonctionnent immédiatement sur cet appareil.
+6. Appuie à nouveau sur F2, puis Exporter.
+7. Envoie-moi le fichier hotspots.json pour l’intégrer définitivement au site public.
 
-Ensuite :
-Commit to main
-Push origin
+IMPORTANT
+- Cette version ne contient aucun bouton de son.
+- Les vidéos restent muettes.
+- La version actuelle de ton site peut rester en ligne jusqu’à ce que tu aies vérifié cette nouvelle version.

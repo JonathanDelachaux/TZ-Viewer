@@ -64,11 +64,7 @@ button.active{background:rgba(255,255,255,.93);color:#000}
   gap:9px;
 }
 #navigation button{height:48px}
-#previousButton,#nextButton{
-  width:48px;
-  padding:0;
-  font-size:25px;
-}
+#previousButton,#nextButton{width:48px;padding:0;font-size:25px}
 #galleryButton{min-width:92px}
 #loadingMessage{
   position:fixed;
@@ -92,6 +88,41 @@ button.active{background:rgba(255,255,255,.93);color:#000}
   border-radius:14px;
   white-space:pre-wrap;
   line-height:1.45;
+}
+#editorPanel{
+  position:fixed;
+  z-index:60;
+  left:14px;
+  bottom:78px;
+  width:min(430px,calc(100vw - 28px));
+  padding:14px;
+  border-radius:16px;
+  background:rgba(0,0,0,.88);
+  backdrop-filter:blur(10px);
+}
+#editorPanel p{margin:8px 0 12px;line-height:1.4}
+.editor-actions{display:flex;flex-wrap:wrap;gap:8px}
+#hotspotLayer{
+  position:fixed;
+  inset:0;
+  z-index:55;
+  pointer-events:none;
+}
+.hotspot-marker{
+  position:absolute;
+  width:44px;
+  height:44px;
+  margin:-22px 0 0 -22px;
+  border-radius:50%;
+  border:2px solid #fff;
+  background:rgba(255,0,120,.86);
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+  display:grid;
+  place-items:center;
+  box-shadow:0 2px 14px rgba(0,0,0,.65);
+  pointer-events:none;
 }
 @media(hover:hover) and (pointer:fine){
   #gyroButton{display:none}

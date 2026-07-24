@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#000000">
-  <title>Galerie 360 — Malkos</title>
+  <title>TZ Viewer 2.0</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -22,6 +22,19 @@
     <button id="nextButton" type="button" aria-label="Œuvre suivante">→</button>
   </nav>
 
+  <aside id="editorPanel" hidden>
+    <strong>Éditeur des liens</strong>
+    <p id="editorInstruction"></p>
+    <div class="editor-actions">
+      <button id="undoHotspotButton" type="button">Annuler</button>
+      <button id="saveHotspotsButton" type="button">Enregistrer</button>
+      <button id="exportHotspotsButton" type="button">Exporter</button>
+      <button id="clearHotspotsButton" type="button">Effacer</button>
+      <button id="closeEditorButton" type="button">Fermer</button>
+    </div>
+  </aside>
+
+  <div id="hotspotLayer" aria-hidden="true"></div>
   <div id="loadingMessage">Chargement…</div>
   <div id="errorBox" hidden></div>
 
