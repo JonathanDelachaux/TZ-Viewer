@@ -1,16 +1,19 @@
-NOUVEAUX LIENS — GALERIE
+Remplace uniquement le fichier :
 
-Remplace uniquement :
-engine\hotspots.js
-
-dans :
 E:\GitHub\TZ-Viewer\engine\hotspots.js
 
-Puis :
-1. GitHub Desktop
-2. Summary : Nouveaux liens galerie
-3. Commit to main
-4. Push origin
-5. Recharge avec Ctrl + F5
+par le fichier hotspots.js de ce dossier.
 
-Cette version utilise la nouvelle numérotation 01 à 10 de l'image poussée.
+Puis dans GitHub Desktop :
+1. Summary : Correction liens 07 à 10
+2. Commit to main
+3. Push origin
+4. Recharge le site avec Ctrl + F5
+
+Correction appliquée :
+07 = Dans la piscine
+08 = Bassin de la Boussole, deux peintures pour une seule animation
+09 = Place des Mascarades
+10 = La Forêt
+
+Les détections miroir ont aussi été supprimées pour éviter les décalages.
