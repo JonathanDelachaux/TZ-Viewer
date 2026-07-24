@@ -1,0 +1,21 @@
+CORRECTION DES LIENS DE LA GALERIE
+
+Remplace uniquement app.js dans le nouveau projet TZ-Viewer.
+
+Correspondances :
+1 = L’Atelier de Malkos
+2 = Argyrisme vs Vitiligo
+3 = Mardi Gras, le tardigrade
+4 = Autour de Malkos
+5 = Fresque de Malkos
+6 = Au-dessus de la piscine
+7 = Dans la piscine
+8 = Le Bassin de la Boussole
+9 = Place des Mascarades
+10 = La Forêt
+
+Les clics sont maintenant limités à la zone des numéros au sol.
+
+Ensuite :
+Commit to main
+Push origin
