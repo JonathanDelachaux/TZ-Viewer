@@ -1,24 +1,16 @@
-TZ VIEWER 2.0
+NOUVEAUX LIENS — GALERIE
 
-Cette version est un projet complet et indépendant.
+Remplace uniquement :
+engine\hotspots.js
 
-INSTALLATION
-1. Dézippe ce dossier.
-2. Copie tes dix médias dans le dossier media.
-3. Copie ensuite tout le contenu dans E:\GitHub\TZ-Viewer.
-4. Dans GitHub Desktop : Commit to main, puis Push origin.
-5. Recharge le site avec Ctrl + F5.
+dans :
+E:\GitHub\TZ-Viewer\engine\hotspots.js
 
-MODE ÉDITEUR
-1. Ouvre la Galerie.
-2. Appuie sur F2.
-3. Clique au centre des zones 01 à 10, dans cet ordre.
-4. Clique sur Enregistrer.
-5. Les liens fonctionnent immédiatement sur cet appareil.
-6. Appuie à nouveau sur F2, puis Exporter.
-7. Envoie-moi le fichier hotspots.json pour l’intégrer définitivement au site public.
+Puis :
+1. GitHub Desktop
+2. Summary : Nouveaux liens galerie
+3. Commit to main
+4. Push origin
+5. Recharge avec Ctrl + F5
 
-IMPORTANT
-- Cette version ne contient aucun bouton de son.
-- Les vidéos restent muettes.
-- La version actuelle de ton site peut rester en ligne jusqu’à ce que tu aies vérifié cette nouvelle version.
+Cette version utilise la nouvelle numérotation 01 à 10 de l'image poussée.
