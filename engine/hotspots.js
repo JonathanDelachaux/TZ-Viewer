@@ -35,8 +35,8 @@ const ZONES = [
 ];
 
 // Grande hauteur cliquable : mur, tableau, couleur et numéro au sol.
-const Y_MIN = 315;
-const Y_MAX = 650;
+const Y_MIN = 250;
+const Y_MAX = 820;
 
 function uvToPixel(uv) {
   return {

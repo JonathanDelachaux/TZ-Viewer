@@ -1,27 +1,14 @@
-CORRECTIF — NOUVELLE GALERIE
+CORRECTIF ZONES CLIQUABLES JUSQU'AUX NUMÉROS AU SOL
 
-Remplacer exactement ces trois éléments dans le dépôt GitHub :
+Remplacer ces deux fichiers dans GitHub :
+- app.js
+- engine/hotspots.js
 
-1. app.js
-2. engine/hotspots.js
-3. media/00-galerie.png
+La hauteur cliquable va maintenant de Y=250 à Y=820
+sur une image 2048 × 1024, ce qui inclut :
+- les numéros du haut ;
+- les tableaux ;
+- les zones colorées ;
+- les numéros au sol.
 
-Ne pas publier l'image REFERENCE-galerie-couleurs-et-numeros.png :
-elle sert uniquement à vérifier les zones.
-
-Après remplacement :
-- cliquer sur « Commit changes » ;
-- attendre environ une minute ;
-- ouvrir le site dans un nouvel onglet privé.
-
-Ordre appliqué :
-1 rouge
-2 vert
-3 violet
-4 jaune
-5 magenta
-6 cyan
-7 gris clair
-8 rouille
-9 noir
-10 blanc
+Après le Commit, attendre environ une minute puis recharger le site.
