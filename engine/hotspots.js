@@ -1,75 +1,48 @@
 /*
-  TZ Viewer — hotspots fixes, identiques sur PC et smartphone.
+  TZ Viewer — nouvelle galerie simplifiée.
 
-  Aucun localStorage n'est utilisé.
-  Les zones sont directement liées aux tableaux visibles dans 00-galerie.png.
+  Les 10 zones sont disposées de gauche à droite, exactement comme
+  sur la nouvelle image de galerie :
 
-  Ordre :
-  01 Atelier de Malkos
-  02 Argyrisme vs Vitiligo
-  03 Mardi Gras
-  04 Autour de Malkos
-  05 Fresque de Malkos
-  06 Au-dessus de la piscine
-  07 Dans la piscine
-  08 Bassin de la Boussole — les deux petites peintures
-  09 Place des Mascarades
-  10 La Forêt
+  1 rouge, 2 vert, 3 violet, 4 jaune, 5 magenta,
+  6 cyan, 7 gris clair, 8 rouille, 9 noir, 10 blanc.
+
+  Les zones sont volontairement très larges pour être faciles à toucher
+  sur ordinateur, tablette et smartphone.
 */
 
-// Coordonnées en pixels dans l'image 00-galerie.png (2048 × 1024).
-// Une zone peut contenir plusieurs rectangles.
 const WIDTH = 2048;
 const HEIGHT = 1024;
 
+/*
+  Limites horizontales relevées sur l'image
+  galerie-couleurs-et-numéros.png.
+
+  Chaque bande correspond à une scène :
+  scène 0 = tableau 1, scène 1 = tableau 2, etc.
+*/
 const ZONES = [
-  // 01 — grand tableau central
-  { scene: 0, rects: [[706, 365, 932, 500]] },
-
-  // 02 — petit tableau à droite du 01
-  { scene: 1, rects: [[952, 397, 1002, 447]] },
-
-  // 03 — deux petites œuvres voisines
-  { scene: 2, rects: [[1058, 396, 1088, 449], [1090, 393, 1120, 449]] },
-
-  // 04 — grand tableau avec Malkos
-  { scene: 3, rects: [[1260, 337, 1528, 503]] },
-
-  // 05 — grand tableau à l'extrême droite
-  // La zone traverse la couture du panorama.
-  { scene: 4, rects: [[1600, 367, 2048, 510], [0, 366, 86, 510]] },
-
-  // 06 — deux tableaux superposés à gauche
-  { scene: 5, rects: [[126, 407, 163, 451]] },
-
-  // 07 — grand paysage
-  { scene: 6, rects: [[270, 377, 423, 459]] },
-
-  // 08 — les deux petites peintures : une seule animation
-  { scene: 7, rects: [[553, 405, 599, 446], [620, 407, 655, 445]] },
-
-  // 09 — petit tableau horizontal
-  { scene: 8, rects: [[204, 410, 260, 438]] },
-
-  // 10 — grand tableau à l'extrême gauche
-  { scene: 9, rects: [[0, 369, 84, 507]] }
+  { scene: 0, x1:    0, x2:  284 }, // 1 rouge
+  { scene: 1, x1:  284, x2:  394 }, // 2 vert
+  { scene: 2, x1:  394, x2:  612 }, // 3 violet
+  { scene: 3, x1:  612, x2: 1016 }, // 4 jaune
+  { scene: 4, x1: 1016, x2: 1303 }, // 5 magenta
+  { scene: 5, x1: 1303, x2: 1373 }, // 6 cyan
+  { scene: 6, x1: 1373, x2: 1446 }, // 7 gris clair
+  { scene: 7, x1: 1446, x2: 1768 }, // 8 rouille
+  { scene: 8, x1: 1768, x2: 1932 }, // 9 noir
+  { scene: 9, x1: 1932, x2: 2048 }  // 10 blanc
 ];
+
+// Grande hauteur cliquable : mur, tableau, couleur et numéro au sol.
+const Y_MIN = 315;
+const Y_MAX = 650;
 
 function uvToPixel(uv) {
   return {
     x: uv.u * WIDTH,
     y: (1 - uv.v) * HEIGHT
   };
-}
-
-function contains(rect, x, y, margin = 14) {
-  const [x1, y1, x2, y2] = rect;
-  return (
-    x >= x1 - margin &&
-    x <= x2 + margin &&
-    y >= y1 - margin &&
-    y <= y2 + margin
-  );
 }
 
 export class HotspotStore {
@@ -86,6 +59,7 @@ export class HotspotStore {
 
   clear() {
     this.points = [];
+
     try {
       localStorage.removeItem("tz-viewer-hotspots-v2");
       localStorage.removeItem("tz-viewer-hotspots-v3");
@@ -103,13 +77,17 @@ export class HotspotStore {
 
     const { x, y } = uvToPixel(uv);
 
-    for (const zone of ZONES) {
-      if (zone.scene >= this.sceneCount) continue;
+    if (y < Y_MIN || y > Y_MAX) {
+      return null;
+    }
 
-      for (const rect of zone.rects) {
-        if (contains(rect, x, y)) {
-          return zone.scene;
-        }
+    for (const zone of ZONES) {
+      if (
+        zone.scene < this.sceneCount &&
+        x >= zone.x1 &&
+        x < zone.x2
+      ) {
+        return zone.scene;
       }
     }
 

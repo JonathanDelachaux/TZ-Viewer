@@ -1,7 +1,7 @@
 import { GALLERY, SCENES } from "./data/scenes.js";
 import { Viewer360 } from "./engine/viewer.js";
 import { GyroscopeController } from "./engine/gyro.js";
-import { HotspotStore } from "./engine/hotspots.js";
+import { HotspotStore } from "./engine/hotspots.js?v=nouvelle-galerie-1";
 import { HotspotEditor } from "./engine/editor.js";
 
 const viewerElement = document.querySelector("#viewer");

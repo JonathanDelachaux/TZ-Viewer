@@ -1,32 +1,27 @@
-TZ VIEWER — CORRECTION PC + SMARTPHONE
+CORRECTIF — NOUVELLE GALERIE
 
-Remplace exactement ces deux fichiers dans ton projet :
+Remplacer exactement ces trois éléments dans le dépôt GitHub :
 
-1. engine/viewer.js
+1. app.js
 2. engine/hotspots.js
+3. media/00-galerie.png
 
-Ne les renomme pas.
+Ne pas publier l'image REFERENCE-galerie-couleurs-et-numeros.png :
+elle sert uniquement à vérifier les zones.
 
-Ensuite dans GitHub Desktop :
-1. Summary : Correction hotspots et smartphone
-2. Commit to main
-3. Push origin
+Après remplacement :
+- cliquer sur « Commit changes » ;
+- attendre environ une minute ;
+- ouvrir le site dans un nouvel onglet privé.
 
-Après la publication :
-- sur PC : recharge avec Ctrl + F5 ;
-- sur smartphone : ferme complètement l'onglet, puis rouvre le site ;
-- si nécessaire, vide une fois le cache du navigateur.
-
-Cette version :
-- ne dépend plus du localStorage ;
-- contient les zones directement dans hotspots.js ;
-- rend les mêmes liens disponibles sur tous les appareils ;
-- empêche le navigateur mobile d'annuler le toucher sur le panorama ;
-- tolère un léger mouvement du doigt lors d'un appui.
-
-Correspondances :
-06 = Au-dessus de la piscine
-07 = Dans la piscine
-08 = Bassin de la Boussole, deux peintures pour une seule animation
-09 = Place des Mascarades
-10 = La Forêt
+Ordre appliqué :
+1 rouge
+2 vert
+3 violet
+4 jaune
+5 magenta
+6 cyan
+7 gris clair
+8 rouille
+9 noir
+10 blanc
